@@ -1,181 +1,326 @@
-﻿import Link from 'next/link'
-import { ShoppingBag, Shield, TrendingUp, Store, Truck, Star, ArrowRight, CheckCircle } from 'lucide-react'
+import Link from "next/link"
+import {
+  ArrowRight,
+  Shield,
+  Store,
+  TrendingUp,
+  Truck,
+  Star,
+  ShoppingBag,
+  CheckCircle,
+  Sparkles,
+  BadgeCheck,
+  WalletCards,
+} from "lucide-react"
+
+const features = [
+  {
+    Icon: Shield,
+    title: "Trade-Safe escrow",
+    desc: "Buyer funds stay protected until delivery is confirmed.",
+  },
+  {
+    Icon: Store,
+    title: "Free vendor onboarding",
+    desc: "Start selling without heavy upfront platform costs.",
+  },
+  {
+    Icon: TrendingUp,
+    title: "Affiliate earnings",
+    desc: "Share product links and earn from real conversions.",
+  },
+  {
+    Icon: Truck,
+    title: "Trusted delivery",
+    desc: "Built around reliable courier fulfilment across South Africa.",
+  },
+  {
+    Icon: BadgeCheck,
+    title: "Verified sellers",
+    desc: "A stronger trust layer to reduce scams and fake listings.",
+  },
+  {
+    Icon: WalletCards,
+    title: "Auctions and requests",
+    desc: "Buy, sell, bid, request, and grow from one marketplace.",
+  },
+]
+
+const steps = [
+  {
+    number: "01",
+    title: "Browse safely",
+    desc: "Find products, vendors, and opportunities in one place.",
+  },
+  {
+    number: "02",
+    title: "Pay with protection",
+    desc: "Funds are held securely instead of going directly to the seller.",
+  },
+  {
+    number: "03",
+    title: "Receive delivery",
+    desc: "Track fulfilment and confirm once the order arrives properly.",
+  },
+  {
+    number: "04",
+    title: "Release payment",
+    desc: "Only then does the seller receive the funds.",
+  },
+]
+
+const stats = [
+  { value: "150K+", label: "User goal" },
+  { value: "Free", label: "To start selling" },
+  { value: "Escrow", label: "Buyer protection" },
+  { value: "SA", label: "Built for local trade" },
+]
 
 export default function LandingPage() {
   return (
-    <main style={{fontFamily:"'Plus Jakarta Sans',sans-serif",background:'#ffffff',minHeight:'100vh'}}>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <main className="min-h-screen overflow-x-hidden bg-[#f4faf7] text-[#1c2b22]">
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f5c35_0%,#1a7a4a_55%,#22a063_100%)]" />
+        <div className="absolute -left-20 top-16 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-lime-200/10 blur-2xl" />
 
-      {/* Nav */}
-      <nav style={{position:'sticky',top:0,zIndex:50,background:'rgba(255,255,255,0.95)',backdropFilter:'blur(12px)',borderBottom:'1px solid #e2ece7',boxShadow:'0 1px 12px rgba(0,0,0,0.06)'}}>
-        <div style={{maxWidth:1200,margin:'0 auto',padding:'0 24px',height:64,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <div style={{display:'flex',alignItems:'center',gap:10}}>
-            <div style={{width:38,height:38,borderRadius:12,background:'linear-gradient(135deg,#0f5c35,#22a063)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <ShoppingBag size={18} color="white" />
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-5 sm:px-6 lg:px-8 lg:pb-24 lg:pt-8">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+            <div className="inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#0f5c35] shadow-lg">
+                <ShoppingBag size={18} />
+              </div>
+              <div>
+                <div className="brand text-lg text-white">Corefieds</div>
+                <div className="text-xs text-white/70">Secure marketplace for modern trade</div>
+              </div>
             </div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:22,color:'#111714',letterSpacing:'-0.5px'}}>Corefieds</span>
-          </div>
-          <div style={{display:'flex',alignItems:'center',gap:12}}>
-            <Link href="/login" style={{fontWeight:700,fontSize:14,color:'#1a7a4a',padding:'10px 20px',borderRadius:10,border:'1.5px solid #d4f5e6',background:'#edfaf3',textDecoration:'none',transition:'all .2s'}}>Sign In</Link>
-            <Link href="/register" style={{fontWeight:700,fontSize:14,color:'white',padding:'10px 20px',borderRadius:10,background:'linear-gradient(135deg,#0f5c35,#22a063)',textDecoration:'none',boxShadow:'0 4px 14px rgba(26,122,74,0.3)'}}>Get Started Free</Link>
-          </div>
-        </div>
-      </nav>
 
-      {/* Hero */}
-      <section style={{background:'linear-gradient(135deg,#0f5c35 0%,#1a7a4a 55%,#22a063 100%)',padding:'80px 24px',textAlign:'center',position:'relative',overflow:'hidden'}}>
-        <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'rgba(255,255,255,0.05)',top:-150,right:-150}} />
-        <div style={{position:'absolute',width:300,height:300,borderRadius:'50%',background:'rgba(255,255,255,0.05)',bottom:-100,left:-80}} />
-        <div style={{position:'relative',zIndex:2,maxWidth:700,margin:'0 auto'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,0.15)',border:'1px solid rgba(255,255,255,0.25)',borderRadius:50,padding:'6px 16px',marginBottom:24}}>
-            <Shield size={13} color="white" />
-            <span style={{color:'white',fontSize:12,fontWeight:700}}>South Africa&apos;s Safest Marketplace · Founded 2022</span>
-          </div>
-          <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:58,color:'white',lineHeight:1.1,marginBottom:20,letterSpacing:'-1.5px'}}>
-            Buy. Sell. Bid.<br />
-            <span style={{color:'#2ecc80'}}>Auction. Request.</span>
-          </h1>
-          <p style={{color:'rgba(255,255,255,0.82)',fontSize:18,lineHeight:1.7,marginBottom:36,maxWidth:560,margin:'0 auto 36px'}}>
-            Every transaction protected by Trade-Safe escrow. Your money is safe until you confirm delivery. Zero upfront cost to sell.
-          </p>
-          <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
-            <Link href="/register" style={{display:'inline-flex',alignItems:'center',gap:8,background:'white',color:'#0f5c35',fontWeight:800,fontSize:15,padding:'14px 32px',borderRadius:12,textDecoration:'none',boxShadow:'0 8px 24px rgba(0,0,0,0.15)'}}>
-              Start Selling Free <ArrowRight size={16} />
-            </Link>
-            <Link href="/home" style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,0.15)',color:'white',fontWeight:700,fontSize:15,padding:'14px 32px',borderRadius:12,textDecoration:'none',border:'1px solid rgba(255,255,255,0.3)'}}>
-              Browse Products
-            </Link>
-          </div>
-          <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:24,marginTop:40}}>
-            {['Trade-Safe Escrow','The Courier Guy & Fastway','Free Listings','Verified Sellers'].map(f => (
-              <div key={f} style={{display:'flex',alignItems:'center',gap:6}}>
-                <CheckCircle size={14} color="rgba(255,255,255,0.7)" />
-                <span style={{color:'rgba(255,255,255,0.75)',fontSize:13,fontWeight:600}}>{f}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats bar */}
-      <section style={{background:'#111714',padding:'20px 24px'}}>
-        <div style={{maxWidth:900,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,textAlign:'center'}}>
-          {[
-            {n:'150K+',l:'User Goal'},
-            {n:'Free',l:'To List & Sell'},
-            {n:'100%',l:'Escrow Protected'},
-            {n:'2022',l:'Founded in SA'},
-          ].map(s => (
-            <div key={s.l}>
-              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:26,color:'#2ecc80'}}>{s.n}</div>
-              <div style={{fontSize:12,color:'rgba(255,255,255,0.5)',fontWeight:600,marginTop:2}}>{s.l}</div>
+            <div className="hidden rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/80 backdrop-blur md:block">
+              South Africa • Escrow-first • Courier-enabled
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section style={{maxWidth:1100,margin:'0 auto',padding:'80px 24px'}}>
-        <div style={{textAlign:'center',marginBottom:56}}>
-          <h2 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:38,color:'#111714',letterSpacing:'-1px',marginBottom:12}}>Why Corefieds?</h2>
-          <p style={{color:'#6b8275',fontSize:16,maxWidth:500,margin:'0 auto',lineHeight:1.6}}>Built to solve South Africa&apos;s biggest online shopping problem — scams and unsafe transactions.</p>
-        </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:24}}>
-          {[
-            {Icon:Shield,title:'Trade-Safe Escrow',desc:'Your payment is held securely. Funds only release to the vendor after you confirm safe delivery. No risk, ever.',bg:'#f0fdf4',ic:'#16a34a',ib:'#dcfce7'},
-            {Icon:Store,title:'Free for Vendors',desc:'List unlimited products at absolutely zero cost. Reach thousands of verified buyers across South Africa and Africa.',bg:'#eff6ff',ic:'#2563eb',ib:'#dbeafe'},
-            {Icon:TrendingUp,title:'Earn as Affiliate',desc:'Share product links, earn commissions on every sale. Turn your WhatsApp and Instagram into a real income stream.',bg:'#faf5ff',ic:'#9333ea',ib:'#f3e8ff'},
-            {Icon:Truck,title:'Trusted Delivery',desc:'Partnered with The Courier Guy and Fastway for reliable, fully tracked door-to-door delivery across South Africa.',bg:'#fffbeb',ic:'#d97706',ib:'#fef3c7'},
-            {Icon:Star,title:'Verified Sellers',desc:'Every vendor is verified before listing. Shop knowing exactly who you are buying from — no anonymous sellers.',bg:'#fff1f2',ic:'#e11d48',ib:'#ffe4e6'},
-            {Icon:ShoppingBag,title:'Bid and Auction',desc:'Beyond fixed prices — bid on items, run live auctions, or request products you cannot find listed anywhere else.',bg:'#f0fdfa',ic:'#0d9488',ib:'#ccfbf1'},
-          ].map(({Icon,title,desc,bg,ic,ib}) => (
-            <div key={title} style={{background:'white',borderRadius:20,padding:28,border:'1px solid #e2ece7',boxShadow:'0 2px 12px rgba(26,122,74,0.07)',transition:'all .2s'}}>
-              <div style={{width:52,height:52,borderRadius:16,background:ib,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:18}}>
-                <Icon size={24} color={ic} />
-              </div>
-              <h3 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:17,color:'#111714',marginBottom:10}}>{title}</h3>
-              <p style={{fontSize:14,color:'#6b8275',lineHeight:1.7}}>{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section style={{background:'#f4faf7',padding:'80px 24px'}}>
-        <div style={{maxWidth:900,margin:'0 auto',textAlign:'center'}}>
-          <h2 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:38,color:'#111714',letterSpacing:'-1px',marginBottom:12}}>How It Works</h2>
-          <p style={{color:'#6b8275',fontSize:16,marginBottom:52}}>Safe buying in 4 simple steps</p>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:20}}>
-            {[
-              {n:'01',t:'Browse & Find',d:'Search products across all categories from verified vendors'},
-              {n:'02',t:'Pay via Escrow',d:'Your payment goes to Trade-Safe — not the vendor yet'},
-              {n:'03',t:'Get Delivered',d:'The Courier Guy or Fastway brings it to your door'},
-              {n:'04',t:'Confirm & Release',d:'Happy with your order? Confirm and funds release to vendor'},
-            ].map(step => (
-              <div key={step.n} style={{background:'white',borderRadius:20,padding:24,border:'1px solid #e2ece7',textAlign:'center'}}>
-                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:32,color:'#d4f5e6',marginBottom:12}}>{step.n}</div>
-                <div style={{fontWeight:800,fontSize:15,color:'#111714',marginBottom:8}}>{step.t}</div>
-                <div style={{fontSize:13,color:'#6b8275',lineHeight:1.6}}>{step.d}</div>
-              </div>
-            ))}
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section style={{background:'linear-gradient(135deg,#0f5c35,#22a063)',padding:'80px 24px',textAlign:'center'}}>
-        <div style={{maxWidth:600,margin:'0 auto'}}>
-          <h2 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:42,color:'white',letterSpacing:'-1px',marginBottom:16}}>Join the Movement</h2>
-          <p style={{color:'rgba(255,255,255,0.8)',fontSize:16,marginBottom:36,lineHeight:1.7}}>
-            150,000 users is the goal. Be a vendor, buyer, or affiliate — it&apos;s all free to start.
-          </p>
-          <Link href="/register" style={{display:'inline-flex',alignItems:'center',gap:8,background:'white',color:'#0f5c35',fontWeight:800,fontSize:16,padding:'16px 40px',borderRadius:14,textDecoration:'none',boxShadow:'0 8px 32px rgba(0,0,0,0.15)'}}>
-            Create Free Account <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer style={{background:'#111714',padding:'48px 24px 32px'}}>
-        <div style={{maxWidth:1100,margin:'0 auto'}}>
-          <div style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1fr',gap:40,marginBottom:40}}>
-            <div>
-              <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:16}}>
-                <div style={{width:36,height:36,borderRadius:10,background:'linear-gradient(135deg,#0f5c35,#22a063)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <ShoppingBag size={16} color="white" />
-                </div>
-                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:20,color:'white'}}>Corefieds</span>
+          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+            <div className="max-w-2xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-white/10 px-3 py-2 text-sm font-semibold text-emerald-50 backdrop-blur">
+                <Sparkles size={15} />
+                Built to make online trade feel safer
               </div>
-              <p style={{color:'rgba(255,255,255,0.45)',fontSize:13,lineHeight:1.7,maxWidth:260}}>
-                South Africa&apos;s safest marketplace. Buy, Sell, Bid, Auction and Request. Founded 2022 by Bruce, Zwonaka and Tshamano Nthulane.
+
+              <h1 className="brand max-w-4xl text-4xl leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Buy, sell, bid, request and grow on a marketplace that feels premium on mobile.
+              </h1>
+
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
+                Corefieds brings protected transactions, verified sellers, affiliate income, and cleaner vendor growth into one modern South African marketplace.
               </p>
-              <div style={{marginTop:16,fontSize:12,color:'rgba(255,255,255,0.35)'}}>
-                <div>corefieds@gmail.com</div>
-                <div style={{marginTop:4}}>069-492-3688</div>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/register"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-extrabold text-[#0f5c35] shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5"
+                >
+                  Create free account
+                  <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="/home"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15"
+                >
+                  Browse marketplace
+                </Link>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                {[
+                  "Protected checkout flow",
+                  "Vendor-first growth model",
+                  "Built for trust and scale",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-medium text-white/85 backdrop-blur"
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
-            {[
-              {t:'Buy',links:['Browse Products','Categories','Featured Deals','Auctions']},
-              {t:'Sell',links:['Open Your Store','Vendor Dashboard','Seller Guide','Pricing']},
-              {t:'Company',links:['About Us','Affiliate Program','Help Centre','Contact']},
-            ].map(col => (
-              <div key={col.t}>
-                <h4 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:14,color:'white',marginBottom:16}}>{col.t}</h4>
-                <ul style={{listStyle:'none',padding:0,margin:0,display:'flex',flexDirection:'column',gap:10}}>
-                  {col.links.map(l => (
-                    <li key={l}><a href="#" style={{fontSize:13,color:'rgba(255,255,255,0.4)',textDecoration:'none'}}>{l}</a></li>
-                  ))}
-                </ul>
+
+            <div className="relative">
+              <div className="absolute inset-0 scale-[1.03] rounded-[32px] bg-emerald-300/20 blur-2xl" />
+              <div className="relative rounded-[28px] border border-white/20 bg-white/12 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.2)] backdrop-blur">
+                <div className="rounded-[24px] bg-white p-4 sm:p-5">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6b8275]">
+                        Marketplace preview
+                      </p>
+                      <h2 className="brand mt-1 text-2xl text-[#111714]">Designed for mobile first</h2>
+                    </div>
+                    <div className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-[#1a7a4a]">
+                      Live concept
+                    </div>
+                  </div>
+
+                  <div className="grid gap-3">
+                    <div className="rounded-3xl bg-[linear-gradient(135deg,#0f5c35,#22a063)] p-5 text-white shadow-lg">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-sm text-white/75">Buyer protection</p>
+                          <p className="mt-1 text-2xl font-extrabold">Escrow built in</p>
+                        </div>
+                        <Shield className="mt-1" size={22} />
+                      </div>
+                      <p className="mt-3 text-sm leading-6 text-white/80">
+                        Payments remain protected until the buyer confirms successful delivery.
+                      </p>
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-3xl border border-[#e2ece7] bg-[#f8fcfa] p-4 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6b8275]">Vendor</p>
+                        <p className="mt-1 text-lg font-extrabold text-[#111714]">Open your store</p>
+                        <p className="mt-2 text-sm leading-6 text-[#6b8275]">
+                          Product listings, trust badges, and simple onboarding.
+                        </p>
+                      </div>
+                      <div className="rounded-3xl border border-[#e2ece7] bg-[#f8fcfa] p-4 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6b8275]">Affiliate</p>
+                        <p className="mt-1 text-lg font-extrabold text-[#111714]">Earn from sharing</p>
+                        <p className="mt-2 text-sm leading-6 text-[#6b8275]">
+                          Turn reach into income with product-linked commissions.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="rounded-3xl border border-[#e2ece7] bg-white p-4 shadow-sm">
+                      <div className="flex flex-wrap gap-2">
+                        {["Escrow", "Verified", "Delivery", "Auction", "Request"].map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-[#1a7a4a]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-3xl border border-white/15 bg-white/10 px-4 py-4 text-center backdrop-blur"
+              >
+                <div className="brand text-2xl text-white sm:text-3xl">{stat.value}</div>
+                <div className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
-          <div style={{borderTop:'1px solid rgba(255,255,255,0.08)',paddingTop:24,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
-            <span style={{fontSize:12,color:'rgba(255,255,255,0.3)'}}>© 2025 Corefieds. All rights reserved.</span>
-            <span style={{fontSize:12,color:'rgba(255,255,255,0.3)'}}>🔒 Trade-Safe · 🚚 The Courier Guy & Fastway · 🇿🇦 Built in South Africa</span>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-sm font-bold text-[#1a7a4a]">
+            <CheckCircle size={15} />
+            Why it feels stronger
+          </div>
+          <h2 className="brand mt-4 text-3xl text-[#111714] sm:text-4xl">
+            Cleaner blocks, better spacing, stronger mobile presence
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-[#6b8275] sm:text-base">
+            The experience now uses stacked responsive cards, softer glow layers, and a layout that breathes properly on smaller screens.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {features.map(({ Icon, title, desc }) => (
+            <div
+              key={title}
+              className="group rounded-[28px] border border-[#e2ece7] bg-white p-6 shadow-[0_8px_30px_rgba(26,122,74,0.08)] transition hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(26,122,74,0.14)]"
+            >
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#edfaf3,#d4f5e6)] text-[#1a7a4a] shadow-sm">
+                <Icon size={24} />
+              </div>
+              <h3 className="text-lg font-extrabold text-[#111714]">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-[#6b8275]">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <div className="inline-flex rounded-full bg-[#edfaf3] px-3 py-2 text-sm font-bold text-[#1a7a4a]">
+                How it works
+              </div>
+              <h2 className="brand mt-4 text-3xl text-[#111714] sm:text-4xl">
+                Simple enough for first-time users, premium enough for growth
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-[#6b8275] sm:text-base">
+                The flow is clear, trust-led, and structured to reduce friction for both buyers and sellers.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {steps.map((step) => (
+                <div
+                  key={step.number}
+                  className="rounded-[28px] border border-[#e2ece7] bg-[#f8fcfa] p-5 shadow-sm"
+                >
+                  <div className="brand text-4xl text-[#d0eadb]">{step.number}</div>
+                  <h3 className="mt-3 text-lg font-extrabold text-[#111714]">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-[#6b8275]">{step.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </footer>
+      </section>
+
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f5c35_0%,#1a7a4a_50%,#22a063_100%)]" />
+        <div className="absolute left-10 top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute right-10 bottom-0 h-56 w-56 rounded-full bg-lime-200/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-24">
+          <h2 className="brand text-3xl text-white sm:text-5xl">
+            Ready to make Corefieds look premium on every screen?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">
+            The structure now favors proper mobile stacking, clearer spacing, smoother cards, and visual glow without breaking the existing build.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/register"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-extrabold text-[#0f5c35] shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5"
+            >
+              Start free
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/home"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15"
+            >
+              View marketplace
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
