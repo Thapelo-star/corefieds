@@ -43,25 +43,25 @@ export default function LoginPage() {
         title="Sign in to your Corefieds account"
         subtitle="Access your orders, listings, affiliate activity, and marketplace tools from one clean dashboard."
       >
-        <Link href="/" className="inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-[var(--green-deep)] shadow-lg">
+        <Link href="/" className="inline-flex items-center gap-3 rounded-[24px] border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[var(--green-deep)] shadow-lg">
             <ShoppingBag size={18} />
           </div>
           <div>
             <div className="brand text-xl">Corefieds</div>
-            <div className="text-xs text-white/70">Secure marketplace for modern trade</div>
+            <div className="text-sm text-white/70">Secure marketplace for modern trade</div>
           </div>
         </Link>
       </Hero>
 
-      <Container className="-mt-8 pb-16 sm:-mt-10 lg:pb-24">
+      <Container className="-mt-6 pb-28 sm:-mt-8 lg:pb-24">
         <div className="mx-auto max-w-xl">
-          <Card className="relative z-10">
-            <form onSubmit={handleLogin} className="space-y-5">
+          <Card className="relative z-10 rounded-[32px] p-6 sm:p-8">
+            <form onSubmit={handleLogin} className="space-y-6">
               <div>
                 <label className="label-ui">Email address</label>
                 <input
-                  className="input-ui"
+                  className="input-ui h-14 rounded-[22px]"
                   type="email"
                   placeholder="you@email.co.za"
                   value={email}
@@ -74,7 +74,7 @@ export default function LoginPage() {
                 <label className="label-ui">Password</label>
                 <div className="relative">
                   <input
-                    className="input-ui pr-12"
+                    className="input-ui h-14 rounded-[22px] pr-12"
                     type={showPw ? "text" : "password"}
                     placeholder="Your password"
                     value={password}
@@ -92,7 +92,7 @@ export default function LoginPage() {
               </div>
 
               <div className="text-right">
-                <Link href="/forgot-password" className="text-sm font-bold text-[var(--green-primary)]">
+                <Link href="/forgot-password" className="text-sm font-extrabold text-[var(--charcoal)]">
                   Forgot password?
                 </Link>
               </div>
@@ -103,18 +103,18 @@ export default function LoginPage() {
                 </div>
               ) : null}
 
-              <button type="submit" disabled={loading} className="btn-primary w-full cursor-pointer disabled:opacity-70">
-                {loading ? "Signing in..." : <>Sign in <ArrowRight size={16} /></>}
+              <button type="submit" disabled={loading} className="btn-primary h-14 w-full cursor-pointer rounded-[24px] text-lg disabled:opacity-70">
+                {loading ? "Signing in..." : <>Sign in <ArrowRight size={18} /></>}
               </button>
 
-              <div className="flex items-center justify-center gap-2 rounded-2xl bg-[var(--green-ghost)] px-4 py-3 text-sm text-[var(--muted)]">
-                <Shield size={15} className="text-[var(--green-primary)]" />
+              <div className="flex items-center justify-center gap-2 rounded-[24px] bg-[var(--green-ghost)] px-4 py-4 text-base text-[var(--muted)]">
+                <Shield size={16} className="text-[var(--green-primary)]" />
                 Protected by Trade-Safe escrow
               </div>
             </form>
           </Card>
 
-          <p className="mt-5 text-center text-sm text-[var(--muted)]">
+          <p className="mt-6 text-center text-base text-[var(--muted)]">
             Don&apos;t have an account?{" "}
             <Link href="/register" className="font-extrabold text-[var(--green-primary)]">
               Create one free

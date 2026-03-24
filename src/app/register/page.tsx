@@ -89,23 +89,23 @@ export default function RegisterPage() {
         title="Create your Corefieds account"
         subtitle="Start as a buyer, vendor, or affiliate and move through one premium mobile-first marketplace."
       >
-        <Link href="/" className="inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-[var(--green-deep)] shadow-lg">
+        <Link href="/" className="inline-flex items-center gap-3 rounded-[24px] border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[var(--green-deep)] shadow-lg">
             <ShoppingBag size={18} />
           </div>
           <div>
             <div className="brand text-xl">Corefieds</div>
-            <div className="text-xs text-white/70">Secure marketplace for modern trade</div>
+            <div className="text-sm text-white/70">Secure marketplace for modern trade</div>
           </div>
         </Link>
       </Hero>
 
-      <Container className="-mt-8 pb-16 sm:-mt-10 lg:pb-24">
+      <Container className="-mt-6 pb-28 sm:-mt-8 lg:pb-24">
         <div className="mx-auto max-w-2xl">
-          <Card>
+          <Card className="rounded-[32px] p-6 sm:p-8">
             <div className="mb-6">
               <div className="label-ui">Choose account type</div>
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-4">
                 {roles.map((r) => {
                   const Icon = r.icon
                   const active = role === r.id
@@ -114,31 +114,35 @@ export default function RegisterPage() {
                       key={r.id}
                       type="button"
                       onClick={() => setRole(r.id)}
-                      className={`rounded-[22px] border p-4 text-left transition ${
+                      className={`rounded-[28px] border p-6 text-left transition ${
                         active
                           ? "border-[var(--green-mid)] bg-emerald-50 shadow-[0_10px_30px_rgba(26,122,74,0.08)]"
                           : "border-[var(--border)] bg-white"
                       }`}
                     >
-                      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#effaf4,#daf4e7)] text-[var(--green-primary)]">
-                        <Icon size={22} />
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex items-start gap-4">
+                          <div className="flex h-16 w-16 items-center justify-center rounded-[24px] bg-[linear-gradient(135deg,#effaf4,#daf4e7)] text-[var(--green-primary)]">
+                            <Icon size={28} />
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-extrabold text-[var(--charcoal)]">{r.label}</h3>
+                            <p className="mt-2 text-lg leading-7 text-[var(--muted)]">{r.desc}</p>
+                          </div>
+                        </div>
+                        {active ? <Check size={24} className="text-[var(--green-primary)]" /> : null}
                       </div>
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="text-sm font-extrabold text-[var(--charcoal)]">{r.label}</h3>
-                        {active ? <Check size={16} className="text-[var(--green-primary)]" /> : null}
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{r.desc}</p>
                     </button>
                   )
                 })}
               </div>
             </div>
 
-            <form onSubmit={handleRegister} className="space-y-5">
+            <form onSubmit={handleRegister} className="space-y-6">
               <div>
                 <label className="label-ui">Full name</label>
                 <input
-                  className="input-ui"
+                  className="input-ui h-14 rounded-[22px]"
                   type="text"
                   placeholder="Your full name"
                   value={fullName}
@@ -150,7 +154,7 @@ export default function RegisterPage() {
               <div>
                 <label className="label-ui">Email address</label>
                 <input
-                  className="input-ui"
+                  className="input-ui h-14 rounded-[22px]"
                   type="email"
                   placeholder="you@email.co.za"
                   value={email}
@@ -163,7 +167,7 @@ export default function RegisterPage() {
                 <label className="label-ui">Password</label>
                 <div className="relative">
                   <input
-                    className="input-ui pr-12"
+                    className="input-ui h-14 rounded-[22px] pr-12"
                     type={showPw ? "text" : "password"}
                     placeholder="Create a strong password"
                     value={password}
@@ -186,13 +190,13 @@ export default function RegisterPage() {
                 </div>
               ) : null}
 
-              <button type="submit" disabled={loading} className="btn-primary w-full cursor-pointer disabled:opacity-70">
-                {loading ? "Creating account..." : <>Create free account <ArrowRight size={16} /></>}
+              <button type="submit" disabled={loading} className="btn-primary h-14 w-full cursor-pointer rounded-[24px] text-lg disabled:opacity-70">
+                {loading ? "Creating account..." : <>Create free account <ArrowRight size={18} /></>}
               </button>
             </form>
           </Card>
 
-          <p className="mt-5 text-center text-sm text-[var(--muted)]">
+          <p className="mt-6 text-center text-base text-[var(--muted)]">
             Already have an account?{" "}
             <Link href="/login" className="font-extrabold text-[var(--green-primary)]">
               Sign in
