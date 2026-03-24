@@ -1,18 +1,15 @@
-﻿'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useCart } from '@/hooks/useCart'
-import { ShoppingBag, Trash2, Plus, Minus, ShieldCheck, Truck, ArrowRight, Tag, ChevronRight, Lock } from 'lucide-react'
+"use client"
+
+import Link from "next/link"
+import { useState } from "react"
+import { Minus, Plus, ShoppingBag, Tag, Trash2, Truck, Lock, ArrowRight } from "lucide-react"
+import { useCart } from "@/hooks/useCart"
+import { TopBar, PageHeader, SurfaceCard, EmptyState } from "@/components/ui/AppChrome"
 
 export default function CartPage() {
   const { items, removeItem, updateQty, total, count, clearCart } = useCart()
-  const [coupon, setCoupon] = useState('')
+  const [coupon, setCoupon] = useState("")
   const [couponApplied, setCouponApplied] = useState(false)
-  const router = useRouter()
-
-  const font = "'Plus Jakarta Sans',sans-serif"
-  const syne = "'Syne',sans-serif"
 
   const shipping = total > 0 ? 80 : 0
   const escrowFee = Math.round(total * 0.01)
@@ -20,184 +17,140 @@ export default function CartPage() {
   const grandTotal = total + shipping + escrowFee - discount
 
   function applyCoupon() {
-    if (coupon.toUpperCase() === 'COREFIEDS10') {
-      setCouponApplied(true)
-    }
+    if (coupon.toUpperCase() === "COREFIEDS10") setCouponApplied(true)
   }
 
   return (
-    <div style={{minHeight:'100vh',background:'#f4faf7',fontFamily:font}}>
-      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
-
-      {/* Nav */}
-      <nav style={{background:'white',borderBottom:'1px solid #e2ece7',boxShadow:'0 1px 8px rgba(0,0,0,0.05)',position:'sticky',top:0,zIndex:50}}>
-        <div style={{maxWidth:1280,margin:'0 auto',padding:'0 24px',height:60,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <Link href="/home" style={{display:'flex',alignItems:'center',gap:8,textDecoration:'none'}}>
-            <div style={{width:32,height:32,borderRadius:10,background:'linear-gradient(135deg,#0f5c35,#22a063)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <ShoppingBag size={15} color="white"/>
-            </div>
-            <span style={{fontFamily:syne,fontWeight:800,fontSize:18,color:'#111714'}}>Corefieds</span>
-          </Link>
-          <div style={{display:'flex',alignItems:'center',gap:6,fontSize:13,color:'#6b8275'}}>
-            <Link href="/home" style={{color:'#6b8275',textDecoration:'none'}}>Home</Link>
-            <ChevronRight size={12}/>
-            <span style={{color:'#1c2b22',fontWeight:600}}>My Cart ({count} items)</span>
-          </div>
-        </div>
-      </nav>
-
-      <div style={{maxWidth:1100,margin:'0 auto',padding:'32px 24px'}}>
-        <h1 style={{fontFamily:syne,fontWeight:800,fontSize:28,color:'#111714',marginBottom:8}}>My Cart</h1>
-        <p style={{fontSize:14,color:'#6b8275',marginBottom:28}}>{count} {count===1?'item':'items'} ready for checkout</p>
+    <div className="min-h-screen bg-[var(--surface)]">
+      <TopBar />
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <PageHeader
+          eyebrow="Cart"
+          title="Your cart"
+          subtitle={`${count} item${count === 1 ? "" : "s"} ready for checkout with Trade-Safe protection.`}
+          actions={count > 0 ? <button onClick={clearCart} className="btn-soft cursor-pointer">Clear cart</button> : null}
+        />
 
         {items.length === 0 ? (
-          <div style={{textAlign:'center',padding:'80px 24px',background:'white',borderRadius:24,border:'1px solid #e2ece7'}}>
-            <div style={{fontSize:80,marginBottom:20}}>🛒</div>
-            <h2 style={{fontFamily:syne,fontWeight:800,fontSize:24,color:'#111714',marginBottom:8}}>Your cart is empty</h2>
-            <p style={{fontSize:14,color:'#6b8275',marginBottom:24}}>Looks like you have not added anything yet.</p>
-            <Link href="/home" style={{display:'inline-flex',alignItems:'center',gap:8,background:'linear-gradient(135deg,#0f5c35,#22a063)',color:'white',fontWeight:800,fontSize:15,padding:'13px 32px',borderRadius:12,textDecoration:'none'}}>
-              Start Shopping <ArrowRight size={16}/>
-            </Link>
-          </div>
+          <EmptyState
+            title="Your cart is empty"
+            text="Start browsing products and add the ones you want to buy. Your secure checkout summary will appear here."
+            action={<Link href="/home" className="btn-primary">Browse marketplace <ArrowRight size={16} /></Link>}
+          />
         ) : (
-          <div style={{display:'grid',gridTemplateColumns:'1fr 380px',gap:24,alignItems:'start'}}>
-
-            {/* Left — items */}
-            <div style={{display:'flex',flexDirection:'column',gap:12}}>
-
-              {/* Escrow banner */}
-              <div style={{background:'linear-gradient(135deg,#edfdf4,#d4f5e6)',border:'1px solid #bbf7d0',borderRadius:16,padding:16,display:'flex',alignItems:'center',gap:12}}>
-                <div style={{width:40,height:40,borderRadius:12,background:'#22a063',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                  <Lock size={18} color="white"/>
-                </div>
-                <div>
-                  <div style={{fontWeight:800,fontSize:14,color:'#14532d'}}>Trade-Safe Escrow Protection Active</div>
-                  <div style={{fontSize:12,color:'#166534',marginTop:2}}>Your payment is held securely — only released when you confirm delivery. Zero risk.</div>
-                </div>
-              </div>
-
-              {/* Items */}
-              {items.map(item => (
-                <div key={item.id+item.size+item.color} style={{background:'white',borderRadius:18,padding:20,border:'1px solid #e2ece7',boxShadow:'0 2px 12px rgba(26,122,74,0.06)',display:'flex',gap:16,alignItems:'center'}}>
-                  <div style={{width:80,height:80,borderRadius:16,background:'#f4faf7',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36,flexShrink:0,border:'1px solid #e2ece7'}}>
-                    {item.image}
+          <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
+            <div className="space-y-4">
+              <SurfaceCard className="bg-[linear-gradient(135deg,#edfdf4,#d4f5e6)]">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--green-mid)] text-white">
+                    <Lock size={18} />
                   </div>
-                  <div style={{flex:1,minWidth:0}}>
-                    <h3 style={{fontWeight:700,fontSize:15,color:'#111714',marginBottom:4,lineHeight:1.3}}>{item.title}</h3>
-                    <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:8}}>
-                      {item.size && <span style={{fontSize:11,fontWeight:700,background:'#f4faf7',border:'1px solid #e2ece7',padding:'2px 8px',borderRadius:6,color:'#6b8275'}}>Size: {item.size}</span>}
-                      {item.color && <span style={{fontSize:11,fontWeight:700,background:'#f4faf7',border:'1px solid #e2ece7',padding:'2px 8px',borderRadius:6,color:'#6b8275'}}>Colour: {item.color}</span>}
-                      {item.vendorName && <span style={{fontSize:11,color:'#6b8275'}}>by {item.vendorName}</span>}
+                  <div>
+                    <div className="text-sm font-extrabold text-[#14532d]">Trade-Safe escrow protection active</div>
+                    <div className="mt-1 text-sm leading-6 text-[#166534]">Your payment stays protected until delivery is confirmed successfully.</div>
+                  </div>
+                </div>
+              </SurfaceCard>
+
+              {items.map((item) => (
+                <SurfaceCard key={item.id + item.size + item.color}>
+                  <div className="flex flex-col gap-4 sm:flex-row">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-[22px] border border-[var(--border)] bg-[var(--green-ghost)] text-4xl">
+                      {item.image || "🛍️"}
                     </div>
-                    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:8}}>
-                      <div style={{display:'flex',alignItems:'center',border:'1.5px solid #e2ece7',borderRadius:10,overflow:'hidden'}}>
-                        <button onClick={()=>updateQty(item.id,item.quantity-1)} style={{width:34,height:34,background:'#f4faf7',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#1a7a4a',fontFamily:font}}>
-                          <Minus size={14}/>
-                        </button>
-                        <span style={{width:36,textAlign:'center',fontWeight:800,fontSize:14,color:'#1c2b22'}}>{item.quantity}</span>
-                        <button onClick={()=>updateQty(item.id,item.quantity+1)} style={{width:34,height:34,background:'#f4faf7',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#1a7a4a',fontFamily:font}}>
-                          <Plus size={14}/>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <h3 className="text-lg font-extrabold text-[var(--charcoal)]">{item.title}</h3>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.size ? <span className="rounded-full bg-[var(--green-ghost)] px-3 py-1 text-xs font-bold text-[var(--green-primary)]">Size: {item.size}</span> : null}
+                            {item.color ? <span className="rounded-full bg-[var(--green-ghost)] px-3 py-1 text-xs font-bold text-[var(--green-primary)]">Colour: {item.color}</span> : null}
+                            {item.vendorName ? <span className="rounded-full bg-[#f8fafc] px-3 py-1 text-xs font-bold text-[var(--muted)]">by {item.vendorName}</span> : null}
+                          </div>
+                        </div>
+                        <div className="brand text-2xl text-[var(--green-primary)]">R{(item.price * item.quantity).toLocaleString()}</div>
+                      </div>
+
+                      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="inline-flex items-center rounded-2xl border border-[var(--border)] bg-[var(--green-ghost)] p-1">
+                          <button onClick={() => updateQty(item.id, item.quantity - 1)} className="flex h-10 w-10 items-center justify-center rounded-xl text-[var(--green-primary)]">
+                            <Minus size={16} />
+                          </button>
+                          <span className="w-12 text-center text-sm font-extrabold text-[var(--charcoal)]">{item.quantity}</span>
+                          <button onClick={() => updateQty(item.id, item.quantity + 1)} className="flex h-10 w-10 items-center justify-center rounded-xl text-[var(--green-primary)]">
+                            <Plus size={16} />
+                          </button>
+                        </div>
+
+                        <button onClick={() => removeItem(item.id)} className="inline-flex items-center gap-2 rounded-2xl px-3 py-2 text-sm font-bold text-red-500">
+                          <Trash2 size={15} />
+                          Remove
                         </button>
                       </div>
-                      <span style={{fontFamily:syne,fontWeight:800,fontSize:18,color:'#1a7a4a'}}>R{(item.price*item.quantity).toLocaleString()}</span>
-                      <button onClick={()=>removeItem(item.id)} style={{background:'none',border:'none',cursor:'pointer',color:'#e84040',padding:6,borderRadius:8,display:'flex',alignItems:'center',gap:4,fontSize:12,fontWeight:700,fontFamily:font}}>
-                        <Trash2 size={14}/> Remove
-                      </button>
                     </div>
                   </div>
-                </div>
+                </SurfaceCard>
               ))}
 
-              {/* Coupon */}
-              <div style={{background:'white',borderRadius:18,padding:20,border:'1px solid #e2ece7'}}>
-                <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:12}}>
-                  <Tag size={15} color="#1a7a4a"/>
-                  <span style={{fontWeight:700,fontSize:14,color:'#1c2b22'}}>Coupon Code</span>
+              <SurfaceCard>
+                <div className="mb-4 flex items-center gap-2 text-[var(--charcoal)]">
+                  <Tag size={16} className="text-[var(--green-primary)]" />
+                  <span className="font-extrabold">Coupon code</span>
                 </div>
-                <div style={{display:'flex',gap:10}}>
-                  <input value={coupon} onChange={e=>setCoupon(e.target.value)}
-                    placeholder="Enter code (try COREFIEDS10)"
-                    style={{flex:1,border:'1.5px solid #e2ece7',borderRadius:10,padding:'10px 14px',fontSize:13,fontFamily:font,outline:'none',color:'#1c2b22',background:couponApplied?'#edfaf3':'white',borderColor:couponApplied?'#22a063':'#e2ece7'}}/>
-                  <button onClick={applyCoupon} disabled={couponApplied}
-                    style={{padding:'10px 20px',borderRadius:10,background:couponApplied?'#22a063':'linear-gradient(135deg,#0f5c35,#22a063)',color:'white',border:'none',fontWeight:700,fontSize:13,cursor:couponApplied?'default':'pointer',fontFamily:font}}>
-                    {couponApplied?'✓ Applied':'Apply'}
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <input
+                    className="input-ui"
+                    placeholder="Enter code, try COREFIEDS10"
+                    value={coupon}
+                    onChange={(e) => setCoupon(e.target.value)}
+                  />
+                  <button onClick={applyCoupon} className="btn-primary cursor-pointer sm:!w-auto">
+                    {couponApplied ? "Applied" : "Apply code"}
                   </button>
                 </div>
-                {couponApplied && <div style={{marginTop:8,fontSize:12,color:'#16a34a',fontWeight:700}}>🎉 10% discount applied!</div>}
-              </div>
-
-              {/* Delivery info */}
-              <div style={{background:'white',borderRadius:18,padding:20,border:'1px solid #e2ece7'}}>
-                <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
-                  <Truck size={15} color="#1a7a4a"/>
-                  <span style={{fontWeight:700,fontSize:14,color:'#1c2b22'}}>Delivery Partners</span>
-                </div>
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-                  {[{n:'The Courier Guy',t:'2-4 business days',p:'R80'},
-                    {n:'Fastway Couriers',t:'3-5 business days',p:'R80'}].map(d=>(
-                    <div key={d.n} style={{border:'1.5px solid #e2ece7',borderRadius:12,padding:14,cursor:'pointer'}}>
-                      <div style={{fontWeight:700,fontSize:13,color:'#1c2b22',marginBottom:4}}>🚚 {d.n}</div>
-                      <div style={{fontSize:12,color:'#6b8275'}}>{d.t}</div>
-                      <div style={{fontWeight:800,fontSize:14,color:'#1a7a4a',marginTop:6}}>+R{d.p}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              </SurfaceCard>
             </div>
 
-            {/* Right — summary */}
-            <div style={{position:'sticky',top:80}}>
-              <div style={{background:'white',borderRadius:20,padding:24,border:'1px solid #e2ece7',boxShadow:'0 4px 24px rgba(26,122,74,0.10)'}}>
-                <h3 style={{fontFamily:syne,fontWeight:800,fontSize:18,color:'#111714',marginBottom:20}}>Order Summary</h3>
-
-                {items.map(item=>(
-                  <div key={item.id+item.size} style={{display:'flex',justifyContent:'space-between',marginBottom:10,fontSize:13}}>
-                    <span style={{color:'#6b8275'}}>{item.title.slice(0,22)}... x{item.quantity}</span>
-                    <span style={{fontWeight:700,color:'#1c2b22'}}>R{(item.price*item.quantity).toLocaleString()}</span>
+            <div className="space-y-4">
+              <SurfaceCard>
+                <h3 className="text-lg font-extrabold text-[var(--charcoal)]">Order summary</h3>
+                <div className="mt-5 space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-[var(--muted)]">Subtotal</span><span className="font-bold">R{total.toLocaleString()}</span></div>
+                  <div className="flex justify-between"><span className="text-[var(--muted)]">Delivery</span><span className="font-bold">R{shipping}</span></div>
+                  <div className="flex justify-between"><span className="text-[var(--muted)]">Escrow fee</span><span className="font-bold">R{escrowFee}</span></div>
+                  <div className="flex justify-between"><span className="text-[var(--muted)]">Discount</span><span className="font-bold text-emerald-600">-R{discount}</span></div>
+                  <div className="mt-4 border-t border-[var(--border)] pt-4">
+                    <div className="flex justify-between">
+                      <span className="font-extrabold text-[var(--charcoal)]">Grand total</span>
+                      <span className="brand text-2xl text-[var(--green-primary)]">R{grandTotal.toLocaleString()}</span>
+                    </div>
                   </div>
-                ))}
+                </div>
 
-                <div style={{borderTop:'1px solid #f4faf7',margin:'16px 0',paddingTop:16,display:'flex',flexDirection:'column',gap:10}}>
+                <Link href="/checkout" className="btn-primary mt-6 flex w-full">
+                  Continue to checkout
+                  <ArrowRight size={16} />
+                </Link>
+              </SurfaceCard>
+
+              <SurfaceCard>
+                <div className="mb-3 flex items-center gap-2">
+                  <Truck size={16} className="text-[var(--green-primary)]" />
+                  <span className="font-extrabold text-[var(--charcoal)]">Delivery partners</span>
+                </div>
+                <div className="space-y-3">
                   {[
-                    {l:'Subtotal',v:'R'+total.toLocaleString(),c:'#6b8275'},
-                    {l:'Shipping',v:'R'+shipping,c:'#6b8275'},
-                    {l:'Escrow fee (1%)',v:'R'+escrowFee,c:'#6b8275'},
-                  ].map(row=>(
-                    <div key={row.l} style={{display:'flex',justifyContent:'space-between',fontSize:14}}>
-                      <span style={{color:row.c}}>{row.l}</span>
-                      <span style={{fontWeight:600,color:'#1c2b22'}}>{row.v}</span>
+                    ["The Courier Guy", "2 to 4 business days"],
+                    ["Fastway Couriers", "3 to 5 business days"],
+                  ].map(([name, time]) => (
+                    <div key={name} className="rounded-2xl border border-[var(--border)] bg-[var(--green-ghost)] px-4 py-3">
+                      <div className="font-bold text-[var(--charcoal)]">{name}</div>
+                      <div className="text-sm text-[var(--muted)]">{time}</div>
                     </div>
                   ))}
-                  {discount > 0 && (
-                    <div style={{display:'flex',justifyContent:'space-between',fontSize:14}}>
-                      <span style={{color:'#16a34a',fontWeight:700}}>Coupon discount</span>
-                      <span style={{fontWeight:700,color:'#16a34a'}}>-R{discount.toLocaleString()}</span>
-                    </div>
-                  )}
                 </div>
-
-                <div style={{borderTop:'2px solid #e2ece7',paddingTop:16,display:'flex',justifyContent:'space-between',marginBottom:20}}>
-                  <span style={{fontFamily:syne,fontWeight:800,fontSize:18,color:'#111714'}}>Total</span>
-                  <span style={{fontFamily:syne,fontWeight:800,fontSize:22,color:'#1a7a4a'}}>R{grandTotal.toLocaleString()}</span>
-                </div>
-
-                <button onClick={()=>router.push('/checkout')}
-                  style={{width:'100%',padding:16,borderRadius:14,background:'linear-gradient(135deg,#0f5c35,#22a063)',color:'white',fontWeight:800,fontSize:16,border:'none',cursor:'pointer',fontFamily:font,boxShadow:'0 6px 20px rgba(26,122,74,0.35)',display:'flex',alignItems:'center',justifyContent:'center',gap:8,marginBottom:12}}>
-                  <Lock size={16}/> Secure Checkout
-                </button>
-
-                <Link href="/home" style={{display:'flex',alignItems:'center',justifyContent:'center',gap:6,color:'#6b8275',fontSize:13,fontWeight:700,textDecoration:'none'}}>
-                  ← Continue Shopping
-                </Link>
-
-                <div style={{marginTop:16,background:'#f4faf7',borderRadius:12,padding:12}}>
-                  <div style={{display:'flex',flexDirection:'column',gap:6}}>
-                    {['🔒 Trade-Safe escrow holds your payment','🚚 Tracked delivery nationwide','↩️ 7-day return policy'].map(t=>(
-                      <div key={t} style={{fontSize:11,color:'#6b8275',fontWeight:600}}>{t}</div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </SurfaceCard>
             </div>
           </div>
         )}

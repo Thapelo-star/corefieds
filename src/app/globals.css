@@ -1,5 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap");
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
 
 :root {
   --green-deep: #0f5c35;
@@ -28,43 +28,124 @@ body {
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background: var(--surface);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 .brand {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-.card {
-  background: var(--white);
+.input-ui {
+  width: 100%;
+  border-radius: 16px;
   border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(26, 122, 74, 0.08);
+  background: white;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.glow-green {
-  box-shadow: 0 16px 50px rgba(34, 160, 99, 0.18);
+.input-ui:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 4px rgba(34, 160, 99, 0.12);
 }
 
-.soft-ring {
-  border: 1px solid rgba(255,255,255,0.16);
-  backdrop-filter: blur(14px);
+.label-ui {
+  margin-bottom: 8px;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b8275;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.hero-grid {
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0f5c35, #22a063);
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  border: none;
+  box-shadow: 0 12px 30px rgba(26, 122, 74, 0.24);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.btn-soft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: white;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #edfaf3;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--green-primary);
+}
+
+.grid-auto {
   display: grid;
-  gap: 24px;
+  gap: 16px;
 }
 
-@media (min-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+@media (min-width: 768px) {
+  .grid-auto-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-auto-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
