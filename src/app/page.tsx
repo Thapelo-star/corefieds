@@ -2,12 +2,12 @@ import Link from "next/link"
 import {
   ArrowRight,
   ShieldCheck,
-  Sparkles,
   Store,
-  WalletCards,
   Truck,
   BadgeCheck,
+  WalletCards,
   ShoppingBag,
+  Sparkles,
 } from "lucide-react"
 
 const features = [
@@ -48,13 +48,13 @@ export default function LandingPage() {
           <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-lime-100/10 blur-2xl" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24 lg:pt-10">
-          <div className="inline-flex items-center gap-3 rounded-[28px] border border-white/15 bg-white/10 px-5 py-4 text-white backdrop-blur">
-            <div className="flex h-14 w-14 items-center justify-center rounded-3xl bg-white text-[var(--green-deep)] shadow-lg">
+        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-24 lg:pt-10">
+          <div className="inline-flex max-w-full items-center gap-3 rounded-[28px] border border-white/15 bg-white/10 px-4 py-4 text-white backdrop-blur sm:px-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-3xl bg-white text-[var(--green-deep)] shadow-lg">
               <ShoppingBag size={22} />
             </div>
-            <div>
-              <div className="brand text-[clamp(1.8rem,5vw,2.4rem)] leading-none">Corefieds</div>
+            <div className="min-w-0">
+              <div className="brand truncate text-3xl leading-none sm:text-4xl">Corefieds</div>
               <div className="mt-1 text-sm text-white/75 sm:text-base">Secure marketplace for modern trade</div>
             </div>
           </div>
@@ -65,12 +65,12 @@ export default function LandingPage() {
           </div>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="max-w-3xl">
-              <h1 className="brand text-[clamp(3.2rem,15vw,6.8rem)] leading-[0.9] text-white">
+            <div className="max-w-2xl">
+              <h1 className="max-w-[11ch] text-[42px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white sm:text-[56px] lg:text-[76px]">
                 Buy, sell, bid, request and grow with confidence.
               </h1>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl">
+              <p className="mt-6 max-w-xl text-base leading-8 text-white/80 sm:text-lg">
                 Corefieds combines safer payments, better seller trust, affiliate growth, and cleaner marketplace design into one stronger digital trade experience.
               </p>
 
@@ -116,7 +116,7 @@ export default function LandingPage() {
                       <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7b8d83]">
                         Marketplace preview
                       </div>
-                      <h2 className="brand mt-2 text-3xl leading-tight text-[#111827] sm:text-4xl">
+                      <h2 className="mt-2 text-2xl font-extrabold leading-tight text-[#111827] sm:text-3xl">
                         Designed to feel clean on mobile
                       </h2>
                     </div>
@@ -194,7 +194,7 @@ export default function LandingPage() {
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="max-w-2xl">
           <div className="badge-soft">Why it feels better</div>
-          <h2 className="brand mt-4 text-3xl text-[var(--charcoal)] sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-extrabold text-[var(--charcoal)] sm:text-4xl">
             Premium blocks, calmer spacing, stronger trust signals
           </h2>
           <p className="mt-4 text-base leading-8 text-[var(--muted)]">
