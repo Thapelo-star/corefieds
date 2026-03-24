@@ -1,4 +1,4 @@
-'use client'
+ï»¿'use client'
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -88,7 +88,7 @@ function Navbar() {
   return (
     <>
       <div style={{background:'#0f5c35',padding:'5px 24px',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-        <span style={{fontSize:11,color:'rgba(255,255,255,0.6)'}}>???? South Africa's Safest Marketplace · Trade-Safe Escrow · The Courier Guy & Fastway</span>
+        <span style={{fontSize:11,color:'rgba(255,255,255,0.6)'}}>???? South Africa's Safest Marketplace  Trade-Safe Escrow  The Courier Guy & Fastway</span>
         <span style={{fontSize:11,color:'rgba(255,255,255,0.6)'}}>?? 069-492-3688</span>
       </div>
       <nav style={{position:'sticky',top:0,zIndex:50,background:'white',borderBottom:'1px solid #e2ece7',boxShadow:'0 1px 12px rgba(0,0,0,0.06)'}}>
@@ -358,8 +358,8 @@ function HomeContent() {
             ))}
           </div>
           <div style={{borderTop:'1px solid rgba(255,255,255,0.08)',paddingTop:24,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
-            <span style={{fontSize:12,color:'rgba(255,255,255,0.28)'}}>© 2025 Corefieds. All rights reserved.</span>
-            <span style={{fontSize:12,color:'rgba(255,255,255,0.28)'}}>?? Trade-Safe · ?? The Courier Guy & Fastway · ???? Built in South Africa</span>
+            <span style={{fontSize:12,color:'rgba(255,255,255,0.28)'}}> 2025 Corefieds. All rights reserved.</span>
+            <span style={{fontSize:12,color:'rgba(255,255,255,0.28)'}}>?? Trade-Safe  ?? The Courier Guy & Fastway  ???? Built in South Africa</span>
           </div>
         </div>
       </footer>
