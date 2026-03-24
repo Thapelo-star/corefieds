@@ -1,0 +1,17 @@
+﻿{
+  "name": "Corefieds",
+  "short_name": "Corefieds",
+  "description": "South Africa's safest online marketplace. Buy, Sell, Bid, Auction, Request.",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#f4faf7",
+  "theme_color": "#1a7a4a",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["shopping", "business"],
+  "lang": "en-ZA",
+  "scope": "/"
+}
